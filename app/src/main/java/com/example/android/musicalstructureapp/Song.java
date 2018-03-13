@@ -17,9 +17,9 @@ public class Song {
     private String mArtistName;
 
     /**
-     * Title of album.
+     * Image of song.
      */
-    private String mAlbumTitle;
+    private int mSongImage;
 
     /**
      * Price of song.
@@ -36,12 +36,12 @@ public class Song {
      *
      * @param songTitle  is the title of the song.
      * @param artistName is the name of the artist.
-     * @param albumTitle is the title of the album.
+     * @param songImage is the image of the album.
      */
-    public Song(String songTitle, String artistName, String albumTitle) {
+    public Song(String songTitle, String artistName, int songImage) {
         mSongTitle = songTitle;
         mArtistName = artistName;
-        mAlbumTitle = albumTitle;
+        mSongImage = songImage;
     }
 
     /**
@@ -50,36 +50,36 @@ public class Song {
      * @param priceOfSong is the price of the song.
      * @param songTitle  is the title of the song.
      * @param artistName is the name of the artist.
-     * @param albumTitle is the title of the album.
+     * @param songImage is the image of the album.
      */
 
-    public Song(int priceOfSong, String songTitle, String artistName, String albumTitle) {
+    public Song(int priceOfSong, String songTitle, String artistName, int songImage) {
         mPriceOfSong = priceOfSong;
         mSongTitle = songTitle;
         mArtistName = artistName;
-        mAlbumTitle = albumTitle;
+        mSongImage = songImage;
             }
 
     /**
      * Get the song title.
      */
-    public String getmSongTitle() {
+    public String getSongTitle() {
         return mSongTitle;
     }
 
     /**
      * Get the artist name.
      */
-    public String getmArtistName() {
+    public String getArtistName() {
         return mArtistName;
     }
 
     /**
-     * Get the album title.
+     * Get the album image.
      */
 
-    public String getmAlbumTitle() {
-        return mAlbumTitle;
+    public int getSongImage() {
+        return mSongImage;
     }
 
     /**
