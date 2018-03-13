@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         //if (now_playing != null) {
         now_playing.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent numbersIntent = new Intent(MainActivity.this, NowPlayingActivity.class);
-                startActivity(numbersIntent);
+                Intent nowPlayingIntent = new Intent(MainActivity.this, NowPlayingActivity.class);
+                startActivity(nowPlayingIntent);
             }
         });
     //}
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         song_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent familyIntent = new Intent(MainActivity.this, SongListActivity.class);
-                startActivity(familyIntent);
+                Intent songListIntent = new Intent(MainActivity.this, SongListActivity.class);
+                startActivity(songListIntent);
             }
         });
     }
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         playlists.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent colorsIntent = new Intent(MainActivity.this, PlaylistActivity.class);
-                startActivity(colorsIntent);
+                Intent playlistsIntent = new Intent(MainActivity.this, PlaylistActivity.class);
+                startActivity(playlistsIntent);
             }
         });
     }
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         music_store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent phrasesIntent = new Intent(MainActivity.this, MusicStoreActivity.class);
-                startActivity(phrasesIntent);
+                Intent musicStoreIntent = new Intent(MainActivity.this, MusicStoreActivity.class);
+                startActivity(musicStoreIntent);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.example.android.musicalstructureapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,15 +15,14 @@ public class SongListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        // Floating button Now Playing logic
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent nowPlayingIntent = new Intent(SongListActivity.this, NowPlayingActivity.class);
+                startActivity(nowPlayingIntent);
             }
         });
     }
-
 }
