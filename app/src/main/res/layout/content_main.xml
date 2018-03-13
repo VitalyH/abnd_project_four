@@ -13,24 +13,24 @@ tools:context="com.example.android.musicalstructureapp.MainActivity">
     android:id="@+id/now_playing"
     style="@style/CategoryStyle"
     android:background="@color/category_playing"
-    android:text="Now Playing"        />
+    android:text="@string/title_activity_now_playing"        />
 
 <TextView
-    android:id="@+id/songs_list"
+    android:id="@+id/song_list"
     style="@style/CategoryStyle"
     android:background="@color/category_songs"
-    android:text="Songs list" />
+    android:text="@string/title_activity_song_list" />
 
 <TextView
     android:id="@+id/playlists"
     style="@style/CategoryStyle"
     android:background="@color/category_playlists"
-    android:text="Playlists" />
+    android:text="@string/title_activity_playlist" />
 
 <TextView
     android:id="@+id/music_store"
     style="@style/CategoryStyle"
     android:background="@color/category_store"
-    android:text="Music Store" />
+    android:text="@string/title_activity_music_store" />
 
 </LinearLayout>
