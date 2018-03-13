@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.android.musicalstructureapp.MainActivity"
-    tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/tan_background"
+android:orientation="vertical"
+tools:context="com.example.android.musicalstructureapp.MainActivity">
 
-</android.support.constraint.ConstraintLayout>
+<TextView
+    android:id="@+id/now_playing"
+    style="@style/CategoryStyle"
+    android:background="@color/category_playing"
+    android:text="Now Playing"        />
+
+<TextView
+    android:id="@+id/songs_list"
+    style="@style/CategoryStyle"
+    android:background="@color/category_songs"
+    android:text="Songs list" />
+
+<TextView
+    android:id="@+id/playlists"
+    style="@style/CategoryStyle"
+    android:background="@color/category_playlists"
+    android:text="Playlists" />
+
+<TextView
+    android:id="@+id/music_store"
+    style="@style/CategoryStyle"
+    android:background="@color/category_store"
+    android:text="Music Store" />
+
+</LinearLayout>
