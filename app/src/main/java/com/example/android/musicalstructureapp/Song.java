@@ -24,12 +24,12 @@ public class Song {
     /**
      * Price of song.
      */
-    private int mPriceOfSong;
+    private String mPriceOfSong;
 
     /**
      * Price field check.
      */
-    private static final int NO_PRICE_PROVIDED = -1;
+    private static final String NO_PRICE_PROVIDED = "null";
 
     /**
      * Create a new Song object for Song List activity.
@@ -53,10 +53,10 @@ public class Song {
      * @param songImage is the image of the album.
      */
 
-    public Song(int priceOfSong, String songTitle, String artistName, int songImage) {
-        mPriceOfSong = priceOfSong;
+    public Song(String priceOfSong, String songTitle, String artistName, int songImage) {
         mSongTitle = songTitle;
         mArtistName = artistName;
+        mPriceOfSong = priceOfSong;
         mSongImage = songImage;
             }
 
@@ -86,7 +86,7 @@ public class Song {
      * Get the song price.
      */
 
-    public int getPriceOfSong() {
+    public String getPriceOfSong() {
         return mPriceOfSong;
     }
 
