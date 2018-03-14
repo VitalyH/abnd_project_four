@@ -15,8 +15,8 @@
         />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/text_container"
         android:paddingLeft="16dp">
@@ -32,19 +32,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="one"/>
+
         <TextView
-            android:id="@+id/album_title"
+            android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="one"/>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="one"/>
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
 
     <Button
         android:id="@+id/play"
@@ -55,5 +58,6 @@
         android:id="@+id/buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>

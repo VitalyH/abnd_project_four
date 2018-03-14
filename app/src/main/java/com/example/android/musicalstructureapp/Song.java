@@ -53,7 +53,7 @@ public class Song {
      * @param songImage is the image of the album.
      */
 
-    public Song(String priceOfSong, String songTitle, String artistName, int songImage) {
+    public Song(String songTitle, String artistName, String priceOfSong, int songImage) {
         mSongTitle = songTitle;
         mArtistName = artistName;
         mPriceOfSong = priceOfSong;

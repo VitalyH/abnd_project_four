@@ -7,26 +7,100 @@
     android:orientation="vertical"
     tools:context="com.example.android.musicalstructureapp.SongListActivity">
 
-    <ListView
 
+    <!-- Menu -->
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/tan_background"
+        android:orientation="horizontal"
+        tools:context="com.example.android.musicalstructureapp.MainActivity">
+
+
+        <TextView
+            android:id="@+id/song_list"
+            style="@style/MenuStyle"
+            android:background="@color/category_songs"
+            android:text="@string/title_activity_song_list" />
+
+        <TextView
+            android:id="@+id/playlists"
+            style="@style/MenuStyle"
+            android:background="@color/category_playlists"
+            android:text="@string/title_activity_playlist" />
+
+        <TextView
+            android:id="@+id/music_store"
+            style="@style/MenuStyle"
+            android:background="@color/category_store"
+            android:text="@string/title_activity_music_store" />
+
+    </LinearLayout>
+
+    <!-- Selector -->
+    <ListView
         android:id="@+id/song"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.android.musicalstructureapp.SongListActivity" />
 
-    <!-- Floating Now Playing button -->
+    <!-- Player -->
+    <LinearLayout
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/category_playing"
+        android:orientation="horizontal"
+        tools:context="com.example.android.musicalstructureapp.MainActivity">
+
+
+        <TextView
+            android:id="@+id/song_name"
+            style="@style/NowPlayingStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Now playing:" />
+
+        <TextView
+            android:id="@+id/artist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="Song dfsk fsd fsd sdf sd fsd f title and artist name Song title and artist name"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/play_stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_play_circle_outline" />
+
+
+    </LinearLayout>
+
+    <!-- Floating action button -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="13dp"
         app:backgroundTint="@color/category_playing"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:srcCompat="@android:drawable/ic_media_pause" />
 </RelativeLayout>
 
 

@@ -2,7 +2,7 @@
     <string name="app_name">Musical Structure</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_now_playing">Now Playing</string>
-    <string name="title_activity_song_list">List of songs</string>
+    <string name="title_activity_song_list">Songs</string>
     <string name="title_activity_playlist">Playlists</string>
-    <string name="title_activity_music_store">Music Store</string>
+    <string name="title_activity_music_store">Store</string>
 </resources>
