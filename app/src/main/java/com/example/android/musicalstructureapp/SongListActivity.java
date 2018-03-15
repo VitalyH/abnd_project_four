@@ -29,12 +29,30 @@ public class SongListActivity extends AppCompatActivity {
     Context context = this;
 
     @Override
+    public void onSaveInstanceState(final Bundle bundle) {
+
+        // Saving state of the Now Playing.
+        TextView nowPlaying = findViewById(R.id.now_playing);
+        String currentSong = nowPlaying.getText().toString();
+        bundle.putString("nowPlaying", currentSong);
+        super.onSaveInstanceState(bundle);
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
+        // Restoration of the state of NowPlaying.
+        if (savedInstanceState != null) {
+            String currentSong = savedInstanceState.getString("nowPlaying");
+            TextView nowPlaying = findViewById(R.id.now_playing);
+            nowPlaying.setText(currentSong);
+        }
+
         // Scrolling Text (Marque) in Now Playing
-        TextView marqueArtistName = this.findViewById(R.id.artist_name);
+        TextView marqueArtistName = this.findViewById(R.id.now_playing);
         marqueArtistName.setSelected(true);
 
 
@@ -61,7 +79,7 @@ public class SongListActivity extends AppCompatActivity {
 
         // Create an ArrayList of songs.
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
-        ArrayList<Song> songs = new ArrayList<>();
+        final ArrayList<Song> songs = new ArrayList<>();
         songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", R.drawable.n_1));
         songs.add(new Song("Pop Corn - Remix Version 87 Special D'J", "M & H Band", R.drawable.n_2));
         songs.add(new Song("Dame", "Fly Project", R.drawable.n_3));
@@ -92,11 +110,15 @@ public class SongListActivity extends AppCompatActivity {
             // Handle clicks on items in ListView.
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     // Start "playing" by change FAB icon.
                     fab.setImageDrawable(ContextCompat.getDrawable(context, android.R.drawable.ic_media_pause));
                     isPlaying = false;
-
+                    // Get the Song object at the given position the user clicked on.
+                    Song song = songs.get(position);
+                    // Set song to Now Playing.
+                    TextView nowPlaying = findViewById(R.id.now_playing);
+                    nowPlaying.setText(song.toString());
                 }
             });
         }

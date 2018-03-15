@@ -96,4 +96,9 @@ public class Song {
     public boolean hasPriceOfSong() {
         return mPriceOfSong != NO_PRICE_PROVIDED;
     }
+
+    @Override
+    public String toString() {
+        return mSongTitle + " — " + mArtistName;
+    }
 }

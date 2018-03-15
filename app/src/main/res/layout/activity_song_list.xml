@@ -59,7 +59,6 @@
 
 
         <TextView
-            android:id="@+id/song_name"
             style="@style/NowPlayingStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -67,14 +66,14 @@
             android:text="Now playing:" />
 
         <TextView
-            android:id="@+id/artist_name"
+            android:id="@+id/now_playing"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:ellipsize="marquee"
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="Song dfsk fsd fsd sdf sd fsd f title and artist name Song title and artist name"
+            android:text="Pick your poison..."
             android:textColor="@android:color/white" />
 
     </LinearLayout>
