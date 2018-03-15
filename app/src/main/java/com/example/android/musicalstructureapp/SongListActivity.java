@@ -3,6 +3,7 @@ package com.example.android.musicalstructureapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,8 +36,6 @@ public class SongListActivity extends AppCompatActivity {
         // Scrolling Text (Marque) in Now Playing
         TextView marqueArtistName = this.findViewById(R.id.artist_name);
         marqueArtistName.setSelected(true);
-
-
 
 
         // Initialize floating action button.
@@ -87,6 +88,17 @@ public class SongListActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.song);
         if (listView != null) {
             listView.setAdapter(adapter);
+
+            // Handle clicks on items in ListView.
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    // Start "playing" by change FAB icon.
+                    fab.setImageDrawable(ContextCompat.getDrawable(context, android.R.drawable.ic_media_pause));
+                    isPlaying = false;
+
+                }
+            });
         }
 
         // Top menu
@@ -97,14 +109,14 @@ public class SongListActivity extends AppCompatActivity {
 
 
         // Songs list category listener
-      //  if (song_list != null) {
-            song_list.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
-                    startActivity(songListIntent);
-                }
-            });
+        //  if (song_list != null) {
+        song_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
+                startActivity(songListIntent);
+            }
+        });
         //}
 
         // Playlists category listener
