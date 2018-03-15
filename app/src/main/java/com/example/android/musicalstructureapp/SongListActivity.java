@@ -21,7 +21,8 @@ import java.util.ArrayList;
 
 public class SongListActivity extends AppCompatActivity {
 
-    private boolean isPlaying = false;
+
+    private boolean isPlaying = true;
     Context context = this;
 
     @Override
@@ -30,8 +31,10 @@ public class SongListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_list);
 
         // Scrolling Text (Marque) in Now Playing
-        TextView marque = this.findViewById(R.id.artist_name);
-        marque.setSelected(true);
+        TextView marqueArtistName = this.findViewById(R.id.artist_name);
+        marqueArtistName.setSelected(true);
+
+
 
 
         // Initialize floating action button.
@@ -58,26 +61,26 @@ public class SongListActivity extends AppCompatActivity {
         // Create an ArrayList of songs.
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
         ArrayList<Song> songs = new ArrayList<>();
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "€5", R.drawable.n_1));
+        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", R.drawable.n_1));
+        songs.add(new Song("Pop Corn - Remix Version 87 Special D'J", "M & H Band", R.drawable.n_2));
+        songs.add(new Song("Dame", "Fly Project", R.drawable.n_3));
+        songs.add(new Song("Catch A Faya - Remaniax Radio Edit", "Dancehall Kings", R.drawable.n_4));
+        songs.add(new Song("Mainframe", "Alex", R.drawable.n_5));
+        songs.add(new Song("Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse", R.drawable.n_6));
+        songs.add(new Song("Brick England", "Jean-Michel Jarre, Pet Shop Boys", R.drawable.n_7));
+        songs.add(new Song("Prisencolinensinainciusol", "MINACELENTANO", R.drawable.n_8));
+        songs.add(new Song("'Till I Collapse", "Eminem, Nate Dogg", R.drawable.n_9));
+        songs.add(new Song("In the Army Now - Radio Mix", "Captain Jack", R.drawable.n_10));
+        songs.add(new Song("Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk", R.drawable.n_11));
+        songs.add(new Song("Slice Me Nice - Deep Hammer Remix", "Fancy, Adam van Hammer", R.drawable.n_12));
+        songs.add(new Song("Judas", "Lady Gaga", R.drawable.n_13));
+        songs.add(new Song("Extreme Ways (Jason Bourne)", "Moby", R.drawable.n_14));
+        songs.add(new Song("Moscow Calling", "Gorkiy Park", R.drawable.n_15));
+        songs.add(new Song("Mombasa", "2Cellos", R.drawable.n_16));
+        songs.add(new Song("Living On My Own", "Freddie Mercury", R.drawable.n_17));
+        songs.add(new Song("Space Oddity - 2015 Remastered Version", "David Bowie", R.drawable.n_18));
+        songs.add(new Song("Sunday With A Flu", "Yodelice", R.drawable.n_19));
+        songs.add(new Song("Mistakes I've Made - Radio Edit", "Eelke Kleijn", R.drawable.n_20));
 
         // Use SongAdapter.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_songs);

@@ -20,6 +20,11 @@ public class SongAdapter extends ArrayAdapter<Song> {
     public SongAdapter(Activity context, ArrayList<Song> words, int colorResourceId) {
         super(context, 0, words);
         mColorResourceId = colorResourceId;
+
+      //  TextView marqueSongTitle = this.findViewById(R.id.song_title);
+       // TextView marqueArtist = this.findViewById(R.id.artist);
+       // marqueSongTitle.setSelected(true);
+       // marqueArtist.setSelected(true);
     }
 
     @Override
@@ -37,10 +42,14 @@ public class SongAdapter extends ArrayAdapter<Song> {
         // Find in the list_item.xml the song title and set on the TextView.
         TextView songTextView = listItemView.findViewById(R.id.song_title);
         songTextView.setText(currentSong.getSongTitle());
+        // Scrolling Text (Marque)
+        songTextView.setSelected(true);
 
         // Find in the list_item.xml the artist name and set on the TextView.
         TextView artistTextView = listItemView.findViewById(R.id.artist);
         artistTextView.setText(currentSong.getArtistName());
+        // Scrolling Text (Marque)
+        artistTextView.setSelected(true);
 
         // Find in the list_item.xml the song image and set on the ImageView.
         ImageView imageView = listItemView.findViewById(R.id.image);
@@ -48,13 +57,13 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         // Find in the list_item.xml the song price and set on the TextView.
         // Check whether or not there is song price field.
-        TextView priceTextView = listItemView.findViewById(R.id.price);
-        if (currentSong.hasPriceOfSong()) {
-            priceTextView.setText(currentSong.getPriceOfSong());
-            priceTextView.setVisibility(View.VISIBLE);
-        } else {
-            priceTextView.setVisibility(View.GONE);
-        }
+      //  TextView priceTextView = listItemView.findViewById(R.id.price);
+       // if (currentSong.hasPriceOfSong()) {
+       //     priceTextView.setText(currentSong.getPriceOfSong());
+       //     priceTextView.setVisibility(View.VISIBLE);
+       // } else {
+       //     priceTextView.setVisibility(View.GONE);
+       // }
 
         // Set the theme color for the list item.
         // Find the color from resource ID.
@@ -62,6 +71,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
         View textContainer = listItemView.findViewById(R.id.text_container);
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         textContainer.setBackgroundColor(color);
+
+
 
         // Return the whole list item layout
         return listItemView;

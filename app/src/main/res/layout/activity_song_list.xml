@@ -44,12 +44,8 @@
         android:id="@+id/song"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menu"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.android.musicalstructureapp.SongListActivity" />
+        android:layout_above="@+id/player"
+        android:layout_below="@+id/menu" />
 
     <!-- Player -->
     <LinearLayout
@@ -81,13 +77,6 @@
             android:text="Song dfsk fsd fsd sdf sd fsd f title and artist name Song title and artist name"
             android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/play_stop_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/ic_play_circle_outline" />
-
-
     </LinearLayout>
 
     <!-- Floating action button -->
@@ -100,7 +89,7 @@
         android:layout_marginBottom="40dp"
         android:layout_marginStart="13dp"
         app:backgroundTint="@color/category_playing"
-        app:srcCompat="@android:drawable/ic_media_pause" />
+        app:srcCompat="@android:drawable/ic_media_play" />
 </RelativeLayout>
 
 

@@ -20,20 +20,16 @@
         </activity>
         <activity
             android:name=".NowPlayingActivity"
-            android:label="@string/title_activity_now_playing"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/title_activity_now_playing"              />
         <activity
             android:name=".SongListActivity"
-            android:label="@string/title_activity_song_list"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/title_activity_song_list"             />
         <activity
             android:name=".PlaylistActivity"
-            android:label="@string/title_activity_playlist"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/title_activity_playlist"             />
         <activity
             android:name=".MusicStoreActivity"
-            android:label="@string/title_activity_music_store"
-            android:parentActivityName=".MainActivity">
+            android:label="@string/title_activity_music_store"            >
 
         </activity>
     </application>
