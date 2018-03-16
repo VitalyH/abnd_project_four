@@ -14,16 +14,16 @@ public class MusicStoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_music_store);
 
         // Floating button Now Playing logic
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent nowPlayingIntent = new Intent(MusicStoreActivity.this, NowPlayingActivity.class);
-                startActivity(nowPlayingIntent);
-                }
-
-        });
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent nowPlayingIntent = new Intent(MusicStoreActivity.this, NowPlayingActivity.class);
+//                startActivity(nowPlayingIntent);
+//                }
+//
+//        });
     }
 }
 

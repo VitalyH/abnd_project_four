@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.musicalstructureapp.MusicStoreActivity">
 
-    <include layout="@layout/content_music_store" />
 
 
     <!-- Floating Now Playing button -->

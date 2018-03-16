@@ -17,19 +17,15 @@ public class PlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-        // Restore Now Playing by access to  nowPlayingStorage
-        if (SongListActivity.nowPlayingStorage != null) {
-            TextView nowPlaying = findViewById(R.id.now_playing);
-            nowPlaying.setText(SongListActivity.nowPlayingStorage);
-        }
-        // Floating button Now Playing logic
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent nowPlayingIntent = new Intent(PlaylistActivity.this, NowPlayingActivity.class);
-                startActivity(nowPlayingIntent);
-            }
-        });
+
+//        // Floating button Now Playing logic
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent nowPlayingIntent = new Intent(PlaylistActivity.this, NowPlayingActivity.class);
+//                startActivity(nowPlayingIntent);
+//            }
+//        });
     }
 }

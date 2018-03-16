@@ -5,4 +5,6 @@
     <string name="title_activity_song_list">Songs</string>
     <string name="title_activity_playlist">Playlists</string>
     <string name="title_activity_music_store">Store</string>
+    <string name="player_now_playing_title">Now playing:</string>
+    <string name="player_default_message">Choose song...</string>
 </resources>

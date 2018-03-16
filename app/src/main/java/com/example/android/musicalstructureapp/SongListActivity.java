@@ -1,82 +1,32 @@
 package com.example.android.musicalstructureapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class SongListActivity extends AppCompatActivity {
 
-    /**
-     * Create menu listeners with intents outside onCreate
-     * for better memory management.
-     */
-    // Song's list listener.
-    private View.OnClickListener mSongClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
-            startActivity(songListIntent);
-        }
-
-    };
-
-    // Playlist list listener.
-    private View.OnClickListener mPlaylistClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            Intent playlistIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
-            startActivity(playlistIntent);
-        }
-
-    };
-
-    // Store listener.
-    private View.OnClickListener mStoreClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            Intent storeIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
-            startActivity(storeIntent);
-        }
-
-    };
-
-
-    /**
-     * State of the Play/Pause button
-     */
+    // Variables for saving state of the Player.
     private boolean isPlaying = true;
-    public static String nowPlayingStorage;
+    private String nowPlayingStorage;
 
     @Override
     public void onSaveInstanceState(final Bundle bundle) {
 
-        // Saving state of the Now Playing.
+        // Save state of the Player.
         TextView nowPlaying = findViewById(R.id.now_playing);
         String currentSong = nowPlaying.getText().toString();
-        bundle.putString("nowPlaying", currentSong);
+        bundle.putString("nowPlaying", currentSong); // Song and artist name
+        bundle.putBoolean("playButton", isPlaying); // State of the Play/Pause button
         super.onSaveInstanceState(bundle);
-
     }
 
     @Override
@@ -84,26 +34,27 @@ public class SongListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        // Restore Now Playing by access to  nowPlayingStorage
-        if (nowPlayingStorage != null) {
-            TextView nowPlaying = findViewById(R.id.now_playing);
-            nowPlaying.setText(nowPlayingStorage);
-        }
-
-
-        // Restore of the state of NowPlaying.
+        // Restore song and artist name in Player after screen rotation.
         if (savedInstanceState != null) {
             String currentSong = savedInstanceState.getString("nowPlaying");
             TextView nowPlaying = findViewById(R.id.now_playing);
             nowPlaying.setText(currentSong);
+            // Restore state of Play/Pause Button after screen rotation.
+            isPlaying = savedInstanceState.getBoolean("playButton");
+            final FloatingActionButton fab = findViewById(R.id.fab);
+            if (isPlaying) {
+                fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_play));
+            } else {
+                fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_pause));
+            }
         }
 
         // Scrolling Text (Marque) in Now Playing
         TextView marqueArtistName = this.findViewById(R.id.now_playing);
         marqueArtistName.setSelected(true);
 
-
         // Initialize floating action button.
+        // Setup listener.
         final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -120,6 +71,23 @@ public class SongListActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Restore Player state after we come from other activities.
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            // Receive state of Now Playing - info and button.
+            String restoredNowPlaying = extras.getString("INFO");
+            isPlaying = extras.getBoolean("BUTTON");
+            // Restore Now Playing info
+            TextView nowPlaying = findViewById(R.id.now_playing);
+            nowPlaying.setText(restoredNowPlaying);
+            // Restore state of Play button
+            if (isPlaying) {
+                fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_play));
+            } else {
+                fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_pause));
+            }
+        }
 
         // Create an ArrayList of songs.
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
@@ -163,56 +131,74 @@ public class SongListActivity extends AppCompatActivity {
                     // Set song to Now Playing.
                     TextView nowPlaying = findViewById(R.id.now_playing);
                     nowPlaying.setText(song.toString());
-                    nowPlayingStorage = nowPlaying.getText().toString();
+
                 }
-    });
+            });
 
+            // Top menu
+            // Find the View's that show the categories.
+            TextView song_list = findViewById(R.id.song_list);
+            TextView playlists = findViewById(R.id.playlists);
+            TextView music_store = findViewById(R.id.music_store);
 
+            //Songs list category listener
+            // and container for transfer
+            // Player state between activities.
+            song_list.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Get info from the Player.
+                    TextView nowPlaying = findViewById(R.id.now_playing);
+                    nowPlayingStorage = nowPlaying.getText().toString();
+                    // Initialize intent.
+                    Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
+                    // Transfer state of the Player between activities.
+                    songListIntent.putExtra("INFO", nowPlayingStorage);
+                    songListIntent.putExtra("BUTTON", isPlaying);
+                    // Start intent.
+                    startActivity(songListIntent);
+                }
+            });
 
+            // Playlists category listener
+            // and container for transfer
+            // Player state between activities.
+            playlists.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Get info from the Player.
+                    TextView nowPlaying = findViewById(R.id.now_playing);
+                    nowPlayingStorage = nowPlaying.getText().toString();
+                    // Initialize intent.
+                    Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
+                    // Transfer state of the Player between activities.
+                    playlistsIntent.putExtra("INFO", nowPlayingStorage);
+                    playlistsIntent.putExtra("BUTTON", isPlaying);
+                    // Start intent.
+                    startActivity(playlistsIntent);
+                }
+            });
 
-        // Top menu
-        // Find the View's that show the categories
-        TextView song_list = findViewById(R.id.song_list);
-        TextView playlists = findViewById(R.id.playlists);
-        TextView music_store = findViewById(R.id.music_store);
-
-
-        //Songs list category listener
-        song_list.setOnClickListener(mSongClickListener);
-//             song_list.setOnClickListener(new View.OnClickListener() {
-//                 @Override
-//                  public void onClick(View view) {
-//                     Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
-//                   startActivity(songListIntent);
-//                 }
-//             });
-
-
-        // Playlists category listener
-        playlists.setOnClickListener(mPlaylistClickListener);
-//        if (playlists != null) {
-//            playlists.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
-//                    startActivity(playlistsIntent);
-//                }
-//            });
-//        }
-
-        // Music store category listener
-        music_store.setOnClickListener(mStoreClickListener);
-//        if (music_store != null) {
-//            music_store.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
-//                    startActivity(musicStoreIntent);
-//                }
-//            });
-//        }
-
-
-
+            // Music store category listener
+            // and container for transfer
+            // Player state between activities.
+            music_store.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Get info from the Player.
+                    TextView nowPlaying = findViewById(R.id.now_playing);
+                    nowPlayingStorage = nowPlaying.getText().toString();
+                    // Initialize intent.
+                    Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
+                    // Transfer state of the Player between activities.
+                    musicStoreIntent.putExtra("INFO", nowPlayingStorage);
+                    musicStoreIntent.putExtra("BUTTON", isPlaying);
+                    // Start intent.
+                    startActivity(musicStoreIntent);
+                }
+            });
+        }
     }
-}}
+}
+
+
