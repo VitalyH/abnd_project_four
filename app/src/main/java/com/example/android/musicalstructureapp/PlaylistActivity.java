@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class PlaylistActivity extends AppCompatActivity {
 
@@ -16,7 +17,11 @@ public class PlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
-
+        // Restore Now Playing by access to  nowPlayingStorage
+        if (SongListActivity.nowPlayingStorage != null) {
+            TextView nowPlaying = findViewById(R.id.now_playing);
+            nowPlaying.setText(SongListActivity.nowPlayingStorage);
+        }
         // Floating button Now Playing logic
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -24,9 +24,49 @@ import java.util.ArrayList;
 
 public class SongListActivity extends AppCompatActivity {
 
+    /**
+     * Create menu listeners with intents outside onCreate
+     * for better memory management.
+     */
+    // Song's list listener.
+    private View.OnClickListener mSongClickListener = new View.OnClickListener() {
 
+        @Override
+        public void onClick(View view) {
+            Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
+            startActivity(songListIntent);
+        }
+
+    };
+
+    // Playlist list listener.
+    private View.OnClickListener mPlaylistClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            Intent playlistIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
+            startActivity(playlistIntent);
+        }
+
+    };
+
+    // Store listener.
+    private View.OnClickListener mStoreClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            Intent storeIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
+            startActivity(storeIntent);
+        }
+
+    };
+
+
+    /**
+     * State of the Play/Pause button
+     */
     private boolean isPlaying = true;
-    Context context = this;
+    public static String nowPlayingStorage;
 
     @Override
     public void onSaveInstanceState(final Bundle bundle) {
@@ -44,7 +84,14 @@ public class SongListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_list);
 
-        // Restoration of the state of NowPlaying.
+        // Restore Now Playing by access to  nowPlayingStorage
+        if (nowPlayingStorage != null) {
+            TextView nowPlaying = findViewById(R.id.now_playing);
+            nowPlaying.setText(nowPlayingStorage);
+        }
+
+
+        // Restore of the state of NowPlaying.
         if (savedInstanceState != null) {
             String currentSong = savedInstanceState.getString("nowPlaying");
             TextView nowPlaying = findViewById(R.id.now_playing);
@@ -65,15 +112,12 @@ public class SongListActivity extends AppCompatActivity {
 
                 // Play/Pause state logic.
                 if (isPlaying) {
-                    fab.setImageDrawable(ContextCompat.getDrawable(context, android.R.drawable.ic_media_pause));
+                    fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_pause));
                     isPlaying = false;
                 } else {
-                    fab.setImageDrawable(ContextCompat.getDrawable(context, android.R.drawable.ic_media_play));
+                    fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_play));
                     isPlaying = true;
                 }
-
-                //Intent nowPlayingIntent = new Intent(SongListActivity.this, NowPlayingActivity.class);
-                //startActivity(nowPlayingIntent);
             }
         });
 
@@ -112,16 +156,19 @@ public class SongListActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     // Start "playing" by change FAB icon.
-                    fab.setImageDrawable(ContextCompat.getDrawable(context, android.R.drawable.ic_media_pause));
+                    fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_pause));
                     isPlaying = false;
                     // Get the Song object at the given position the user clicked on.
                     Song song = songs.get(position);
                     // Set song to Now Playing.
                     TextView nowPlaying = findViewById(R.id.now_playing);
                     nowPlaying.setText(song.toString());
+                    nowPlayingStorage = nowPlaying.getText().toString();
                 }
-            });
-        }
+    });
+
+
+
 
         // Top menu
         // Find the View's that show the categories
@@ -130,38 +177,42 @@ public class SongListActivity extends AppCompatActivity {
         TextView music_store = findViewById(R.id.music_store);
 
 
-        // Songs list category listener
-        //  if (song_list != null) {
-        song_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
-                startActivity(songListIntent);
-            }
-        });
-        //}
+        //Songs list category listener
+        song_list.setOnClickListener(mSongClickListener);
+//             song_list.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                  public void onClick(View view) {
+//                     Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
+//                   startActivity(songListIntent);
+//                 }
+//             });
+
 
         // Playlists category listener
-        if (playlists != null) {
-            playlists.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
-                    startActivity(playlistsIntent);
-                }
-            });
-        }
+        playlists.setOnClickListener(mPlaylistClickListener);
+//        if (playlists != null) {
+//            playlists.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
+//                    startActivity(playlistsIntent);
+//                }
+//            });
+//        }
 
         // Music store category listener
-        if (music_store != null) {
-            music_store.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
-                    startActivity(musicStoreIntent);
-                }
-            });
-        }
+        music_store.setOnClickListener(mStoreClickListener);
+//        if (music_store != null) {
+//            music_store.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
+//                    startActivity(musicStoreIntent);
+//                }
+//            });
+//        }
+
+
 
     }
-}
+}}
