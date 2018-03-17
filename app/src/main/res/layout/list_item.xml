@@ -5,8 +5,6 @@
     android:minHeight="@dimen/list_item_height">
 
     <!-- Album cover -->
-    <!-- Song and Store -->
-
     <ImageView
         android:id="@+id/list_view_album_cover"
         android:layout_width="@dimen/list_item_height"
@@ -26,56 +24,41 @@
         android:orientation="vertical">
 
         <!-- Song title -->
-        <!-- Song and Store -->
         <TextView
             android:id="@+id/list_view_song_title"
+            style="@style/ListViewSongPlaylistTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content" />
 
         <!-- Artist name -->
-        <!-- Song and Store -->
         <TextView
             android:id="@+id/list_view_artist"
+            style="@style/ListViewArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/list_view_song_title"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:layout_below="@+id/list_view_song_title" />
 
         <!-- Price tag (PRICE:) -->
         <!-- Store only -->
         <TextView
             android:id="@+id/list_view_price_tag"
+            style="@style/ListViewTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/list_view_artist"
-            android:padding="8dp"
-            android:text="PRICE:"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:text="@string/list_item_song_price" />
 
         <!-- Price of the song -->
         <!-- Store only -->
         <TextView
             android:id="@+id/list_view_price"
+            style="@style/ListViewNumbers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/list_view_artist"
-            android:layout_toEndOf="@+id/list_view_price_tag"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:layout_toEndOf="@+id/list_view_price_tag" />
 
         <!-- Button on the right side -->
-        <!-- For all activities -->
         <!-- Changing view on ic_euro_symbol in Store -->
         <ImageView
             android:id="@+id/list_view_button"
@@ -83,6 +66,4 @@
             android:src="@drawable/ic_play_arrow" />
 
     </RelativeLayout>
-
-
 </RelativeLayout>

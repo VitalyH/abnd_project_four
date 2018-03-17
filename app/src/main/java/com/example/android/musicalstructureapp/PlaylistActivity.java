@@ -91,30 +91,22 @@ public class PlaylistActivity extends AppCompatActivity {
 
         // Create an ArrayList of songs.
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
+        // Song title and artist name here kinda a first song in the playlist. They begin "playing".
         final ArrayList<Song> songs = new ArrayList<>();
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", R.drawable.n_1));
-        songs.add(new Song("Pop Corn - Remix Version 87 Special D'J", "M & H Band", R.drawable.n_2));
-        songs.add(new Song("Dame", "Fly Project", R.drawable.n_3));
-        songs.add(new Song("Catch A Faya - Remaniax Radio Edit", "Dancehall Kings", R.drawable.n_4));
-        songs.add(new Song("Mainframe", "Alex", R.drawable.n_5));
-        songs.add(new Song("Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse", R.drawable.n_6));
-        songs.add(new Song("Brick England", "Jean-Michel Jarre, Pet Shop Boys", R.drawable.n_7));
-        songs.add(new Song("Prisencolinensinainciusol", "MINACELENTANO", R.drawable.n_8));
-        songs.add(new Song("'Till I Collapse", "Eminem, Nate Dogg", R.drawable.n_9));
-        songs.add(new Song("In the Army Now - Radio Mix", "Captain Jack", R.drawable.n_10));
-        songs.add(new Song("Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk", R.drawable.n_11));
-        songs.add(new Song("Slice Me Nice - Deep Hammer Remix", "Fancy, Adam van Hammer", R.drawable.n_12));
-        songs.add(new Song("Judas", "Lady Gaga", R.drawable.n_13));
-        songs.add(new Song("Extreme Ways (Jason Bourne)", "Moby", R.drawable.n_14));
-        songs.add(new Song("Moscow Calling", "Gorkiy Park", R.drawable.n_15));
-        songs.add(new Song("Mombasa", "2Cellos", R.drawable.n_16));
-        songs.add(new Song("Living On My Own", "Freddie Mercury", R.drawable.n_17));
-        songs.add(new Song("Space Oddity - 2015 Remastered Version", "David Bowie", R.drawable.n_18));
-        songs.add(new Song("Sunday With A Flu", "Yodelice", R.drawable.n_19));
-        songs.add(new Song("Mistakes I've Made - Radio Edit", "Eelke Kleijn", R.drawable.n_20));
+        songs.add(new Song("Ultimate 80s Hits", "25","When Doves Cry - Original Mix", "YNOT, Cosmo Klein"));
+        songs.add(new Song("Classic", "13","Pop Corn - Remix Version 87 Special D'J", "M & H Band"));
+        songs.add(new Song("Liked From Radio", "19","Dame", "Fly Project"));
+        songs.add(new Song("Shazaam tracks", "55","Catch A Faya - Remaniax Radio Edit", "Dancehall Kings"));
+        songs.add(new Song("Close Up", "16","Mainframe", "Alex"));
+        songs.add(new Song("Teen party", "13","Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse"));
+        songs.add(new Song("Timeless Classis", "66","Brick England", "Jean-Michel Jarre, Pet Shop Boys"));
+        songs.add(new Song("I Love Italia", "24","Prisencolinensinainciusol", "MINACELENTANO"));
+        songs.add(new Song("Rap The Best", "1","'Till I Collapse", "Eminem, Nate Dogg"));
+        songs.add(new Song("Workout Mix", "55","In the Army Now - Radio Mix", "Captain Jack"));
+        songs.add(new Song("Misc", "198","Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk"));
 
         // Use SongAdapter.
-        SongAdapter adapter = new SongAdapter(this, songs, R.color.category_playlists);
+        PlaylistAdapter adapter = new PlaylistAdapter(this, songs, R.color.category_playlists);
         ListView listView = findViewById(R.id.song);
         if (listView != null) {
             listView.setAdapter(adapter);

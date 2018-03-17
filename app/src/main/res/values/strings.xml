@@ -6,5 +6,7 @@
     <string name="title_activity_playlist">Playlists</string>
     <string name="title_activity_music_store">Store</string>
     <string name="player_now_playing_title">Now playing:</string>
-    <string name="player_default_message">Choose song...</string>
+    <string name="player_default_message">Choose song&#8230;</string>
+    <string name="list_item_song_price">PRICE:</string>
+    <string name="playlist_item_song_number">SONGS:</string>
 </resources>

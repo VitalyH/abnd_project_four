@@ -20,11 +20,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
     public SongAdapter(Activity context, ArrayList<Song> words, int colorResourceId) {
         super(context, 0, words);
         mColorResourceId = colorResourceId;
-
-        //  TextView marqueSongTitle = this.findViewById(R.id.song_title);
-        // TextView marqueArtist = this.findViewById(R.id.artist);
-        // marqueSongTitle.setSelected(true);
-        // marqueArtist.setSelected(true);
     }
 
     @Override
@@ -74,7 +69,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         View textContainer = listItemView.findViewById(R.id.list_view_text_container);
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         textContainer.setBackgroundColor(color);
-
 
         // Return the whole list item layout
         return listItemView;

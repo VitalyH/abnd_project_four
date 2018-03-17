@@ -22,6 +22,16 @@ public class Song {
     private int mSongImage;
 
     /**
+     * Playlist title.
+     */
+    private String mPlaylistTitle;
+
+    /**
+     * Number of songs in playlist.
+     */
+    private String mSongsNumber;
+
+    /**
      * Price of song.
      */
     private String mPriceOfSong = NO_PRICE_PROVIDED;
@@ -61,6 +71,21 @@ public class Song {
     }
 
     /**
+     * Create a new Song object for Playlist activity.
+     *
+     * @param playlistTitle is the title of the playlist.
+     * @param songsNumber   is the number of songs.
+     * @param songTitle     is the title of the song.
+     * @param artistName    is the name of the artist.
+     */
+    public Song(String playlistTitle, String songsNumber, String songTitle, String artistName) {
+        mPlaylistTitle = playlistTitle;
+        mSongsNumber = songsNumber;
+        mSongTitle = songTitle;
+        mArtistName = artistName;
+    }
+
+    /**
      * Get the song title.
      */
     public String getSongTitle() {
@@ -88,6 +113,20 @@ public class Song {
 
     public String getPriceOfSong() {
         return mPriceOfSong;
+    }
+
+    /**
+     * Get the playlist title.
+     */
+    public String getPlaylistTitle() {
+        return mPlaylistTitle;
+    }
+
+    /**
+     * Get the number of songs in playlist.
+     */
+    public String getSongsNumber() {
+        return mSongsNumber;
     }
 
     /**
