@@ -32,7 +32,7 @@ public class SongListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_list);
+        setContentView(R.layout.main_activity);
 
         // Restore song and artist name in Player after screen rotation.
         if (savedInstanceState != null) {
@@ -137,28 +137,8 @@ public class SongListActivity extends AppCompatActivity {
 
             // Top menu
             // Find the View's that show the categories.
-            TextView song_list = findViewById(R.id.song_list);
             TextView playlists = findViewById(R.id.playlists);
             TextView music_store = findViewById(R.id.music_store);
-
-            //Songs list category listener
-            // and container for transfer
-            // Player state between activities.
-            song_list.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent songListIntent = new Intent(SongListActivity.this, SongListActivity.class);
-                    // Transfer state of the Player between activities.
-                    songListIntent.putExtra("INFO", nowPlayingStorage);
-                    songListIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(songListIntent);
-                }
-            });
 
             // Playlists category listener
             // and container for transfer

@@ -24,7 +24,7 @@ public class Song {
     /**
      * Price of song.
      */
-    private String mPriceOfSong;
+    private String mPriceOfSong = NO_PRICE_PROVIDED;
 
     /**
      * Price field check.
@@ -36,7 +36,7 @@ public class Song {
      *
      * @param songTitle  is the title of the song.
      * @param artistName is the name of the artist.
-     * @param songImage is the image of the album.
+     * @param songImage  is the image of the album.
      */
     public Song(String songTitle, String artistName, int songImage) {
         mSongTitle = songTitle;
@@ -48,9 +48,9 @@ public class Song {
      * Create a new Song object for Music Store activity.
      *
      * @param priceOfSong is the price of the song.
-     * @param songTitle  is the title of the song.
-     * @param artistName is the name of the artist.
-     * @param songImage is the image of the album.
+     * @param songTitle   is the title of the song.
+     * @param artistName  is the name of the artist.
+     * @param songImage   is the image of the album.
      */
 
     public Song(String songTitle, String artistName, String priceOfSong, int songImage) {
@@ -58,7 +58,7 @@ public class Song {
         mArtistName = artistName;
         mPriceOfSong = priceOfSong;
         mSongImage = songImage;
-            }
+    }
 
     /**
      * Get the song title.
@@ -94,7 +94,8 @@ public class Song {
      * Returns whether or not there is song price field.
      */
     public boolean hasPriceOfSong() {
-        return mPriceOfSong != NO_PRICE_PROVIDED;
+        //return mPriceOfSong != NO_PRICE_PROVIDED;
+        return !mPriceOfSong.equals(NO_PRICE_PROVIDED);
     }
 
     @Override

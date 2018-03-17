@@ -32,7 +32,7 @@ public class PlaylistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playlist);
+        setContentView(R.layout.main_activity);
 
         // Restore song and artist name in Player after screen rotation.
         if (savedInstanceState != null) {
@@ -138,7 +138,6 @@ public class PlaylistActivity extends AppCompatActivity {
             // Top menu
             // Find the View's that show the categories.
             TextView song_list = findViewById(R.id.song_list);
-            TextView playlists = findViewById(R.id.playlists);
             TextView music_store = findViewById(R.id.music_store);
 
             //Songs list category listener
@@ -157,25 +156,6 @@ public class PlaylistActivity extends AppCompatActivity {
                     songListIntent.putExtra("BUTTON", isPlaying);
                     // Start intent.
                     startActivity(songListIntent);
-                }
-            });
-
-            // Playlists category listener
-            // and container for transfer
-            // Player state between activities.
-            playlists.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent playlistsIntent = new Intent(PlaylistActivity.this, PlaylistActivity.class);
-                    // Transfer state of the Player between activities.
-                    playlistsIntent.putExtra("INFO", nowPlayingStorage);
-                    playlistsIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(playlistsIntent);
                 }
             });
 

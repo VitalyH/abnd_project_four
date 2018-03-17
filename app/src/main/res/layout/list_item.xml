@@ -1,58 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/list"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:minHeight="@dimen/list_item_height">
 
+    <!-- Album cover -->
+    <!-- Song and Store -->
+
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/list_view_album_cover"
         android:layout_width="@dimen/list_item_height"
-        android:layout_height="@dimen/list_item_height"
-        android:contentDescription="Album cover" />
+        android:layout_height="@dimen/list_item_height" />
+
+    <!-- Main list container -->
+    <!-- All inside of it have same b/g color -->
 
     <RelativeLayout
-        android:id="@+id/text_container"
+        android:id="@+id/list_view_text_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/image"
+        android:layout_toEndOf="@id/list_view_album_cover"
         android:orientation="vertical">
 
+        <!-- Song title -->
+        <!-- Song and Store -->
         <TextView
-            android:id="@+id/song_title"
+            android:id="@+id/list_view_song_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
+        <!-- Artist name -->
+        <!-- Song and Store -->
         <TextView
-            android:id="@+id/artist"
+            android:id="@+id/list_view_artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/song_title"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
+            android:layout_below="@+id/list_view_song_title"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
 
+        <!-- Price tag (PRICE:) -->
+        <!-- Store only -->
+        <TextView
+            android:id="@+id/list_view_price_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_view_artist"
+            android:padding="8dp"
+            android:text="PRICE:"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <!-- Price of the song -->
+        <!-- Store only -->
+        <TextView
+            android:id="@+id/list_view_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_view_artist"
+            android:layout_toEndOf="@+id/list_view_price_tag"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <!-- Button on the right side -->
+        <!-- For all activities -->
+        <!-- Changing view on ic_euro_symbol in Store -->
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="Play button"
+            android:id="@+id/list_view_button"
+            style="@style/ListViewPlayEuroButton"
             android:src="@drawable/ic_play_arrow" />
 
     </RelativeLayout>

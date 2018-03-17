@@ -16,15 +16,15 @@ public class SongAdapter extends ArrayAdapter<Song> {
     private int mColorResourceId;
 
     // Initialize the ArrayAdapter's internal storage.
-    // Resource "0" because it's a custom adapter for more the one TextView.
+    // Resource "0" because it's a custom adapter for more then one TextView.
     public SongAdapter(Activity context, ArrayList<Song> words, int colorResourceId) {
         super(context, 0, words);
         mColorResourceId = colorResourceId;
 
-      //  TextView marqueSongTitle = this.findViewById(R.id.song_title);
-       // TextView marqueArtist = this.findViewById(R.id.artist);
-       // marqueSongTitle.setSelected(true);
-       // marqueArtist.setSelected(true);
+        //  TextView marqueSongTitle = this.findViewById(R.id.song_title);
+        // TextView marqueArtist = this.findViewById(R.id.artist);
+        // marqueSongTitle.setSelected(true);
+        // marqueArtist.setSelected(true);
     }
 
     @Override
@@ -40,38 +40,40 @@ public class SongAdapter extends ArrayAdapter<Song> {
         Song currentSong = getItem(position);
 
         // Find in the list_item.xml the song title and set on the TextView.
-        TextView songTextView = listItemView.findViewById(R.id.song_title);
+        TextView songTextView = listItemView.findViewById(R.id.list_view_song_title);
         songTextView.setText(currentSong.getSongTitle());
-        // Scrolling Text (Marque)
-        songTextView.setSelected(true);
 
         // Find in the list_item.xml the artist name and set on the TextView.
-        TextView artistTextView = listItemView.findViewById(R.id.artist);
+        TextView artistTextView = listItemView.findViewById(R.id.list_view_artist);
         artistTextView.setText(currentSong.getArtistName());
-        // Scrolling Text (Marque)
-        artistTextView.setSelected(true);
 
         // Find in the list_item.xml the song image and set on the ImageView.
-        ImageView imageView = listItemView.findViewById(R.id.image);
+        ImageView imageView = listItemView.findViewById(R.id.list_view_album_cover);
         imageView.setImageResource(currentSong.getSongImage());
 
         // Find in the list_item.xml the song price and set on the TextView.
         // Check whether or not there is song price field.
-      //  TextView priceTextView = listItemView.findViewById(R.id.price);
-       // if (currentSong.hasPriceOfSong()) {
-       //     priceTextView.setText(currentSong.getPriceOfSong());
-       //     priceTextView.setVisibility(View.VISIBLE);
-       // } else {
-       //     priceTextView.setVisibility(View.GONE);
-       // }
+        // Change Play icon on €.
+        TextView priceTagTextView = listItemView.findViewById(R.id.list_view_price_tag);
+        TextView priceTextView = listItemView.findViewById(R.id.list_view_price);
+        ImageView list_view_button = listItemView.findViewById(R.id.list_view_button);
+
+        if (currentSong.hasPriceOfSong()) {
+            list_view_button.setImageResource(R.drawable.ic_euro_symbol);
+            priceTextView.setText(currentSong.getPriceOfSong());
+            priceTextView.setVisibility(View.VISIBLE);
+            priceTagTextView.setVisibility(View.VISIBLE);
+        } else {
+            priceTextView.setVisibility(View.GONE);
+            priceTagTextView.setVisibility(View.GONE);
+        }
 
         // Set the theme color for the list item.
         // Find the color from resource ID.
         // Set the background color of the text container.
-        View textContainer = listItemView.findViewById(R.id.text_container);
+        View textContainer = listItemView.findViewById(R.id.list_view_text_container);
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         textContainer.setBackgroundColor(color);
-
 
 
         // Return the whole list item layout

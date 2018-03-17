@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class MusicStoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_store);
+        setContentView(R.layout.main_activity);
 
         // Restore song and artist name in Player after screen rotation.
         if (savedInstanceState != null) {
@@ -92,26 +93,26 @@ public class MusicStoreActivity extends AppCompatActivity {
         // Create an ArrayList of songs.
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
         final ArrayList<Song> songs = new ArrayList<>();
-        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", R.drawable.n_1));
-        songs.add(new Song("Pop Corn - Remix Version 87 Special D'J", "M & H Band", R.drawable.n_2));
-        songs.add(new Song("Dame", "Fly Project", R.drawable.n_3));
-        songs.add(new Song("Catch A Faya - Remaniax Radio Edit", "Dancehall Kings", R.drawable.n_4));
-        songs.add(new Song("Mainframe", "Alex", R.drawable.n_5));
-        songs.add(new Song("Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse", R.drawable.n_6));
-        songs.add(new Song("Brick England", "Jean-Michel Jarre, Pet Shop Boys", R.drawable.n_7));
-        songs.add(new Song("Prisencolinensinainciusol", "MINACELENTANO", R.drawable.n_8));
-        songs.add(new Song("'Till I Collapse", "Eminem, Nate Dogg", R.drawable.n_9));
-        songs.add(new Song("In the Army Now - Radio Mix", "Captain Jack", R.drawable.n_10));
-        songs.add(new Song("Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk", R.drawable.n_11));
-        songs.add(new Song("Slice Me Nice - Deep Hammer Remix", "Fancy, Adam van Hammer", R.drawable.n_12));
-        songs.add(new Song("Judas", "Lady Gaga", R.drawable.n_13));
-        songs.add(new Song("Extreme Ways (Jason Bourne)", "Moby", R.drawable.n_14));
-        songs.add(new Song("Moscow Calling", "Gorkiy Park", R.drawable.n_15));
-        songs.add(new Song("Mombasa", "2Cellos", R.drawable.n_16));
-        songs.add(new Song("Living On My Own", "Freddie Mercury", R.drawable.n_17));
-        songs.add(new Song("Space Oddity - 2015 Remastered Version", "David Bowie", R.drawable.n_18));
-        songs.add(new Song("Sunday With A Flu", "Yodelice", R.drawable.n_19));
-        songs.add(new Song("Mistakes I've Made - Radio Edit", "Eelke Kleijn", R.drawable.n_20));
+        songs.add(new Song("Mistakes I've Made - Radio Edit", "Eelke Kleijn", "1.21", R.drawable.n_20));
+        songs.add(new Song("Sunday With A Flu", "Yodelice", "0.99", R.drawable.n_19));
+        songs.add(new Song("Space Oddity - 2015 Remastered Version", "David Bowie", "FREE", R.drawable.n_18));
+        songs.add(new Song("Living On My Own", "Freddie Mercury", "1.11", R.drawable.n_17));
+        songs.add(new Song("Mombasa", "2Cellos", "0.75", R.drawable.n_16));
+        songs.add(new Song("Moscow Calling", "Gorkiy Park", "9.99", R.drawable.n_15));
+        songs.add(new Song("Extreme Ways (Jason Bourne)", "Moby", "1.21", R.drawable.n_14));
+        songs.add(new Song("Judas", "Lady Gaga", "6.66", R.drawable.n_13));
+        songs.add(new Song("Slice Me Nice - Deep Hammer Remix", "Fancy, Adam van Hammer", "1.49", R.drawable.n_12));
+        songs.add(new Song("Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk", "1.21", R.drawable.n_11));
+        songs.add(new Song("In the Army Now - Radio Mix", "Captain Jack", "2.21", R.drawable.n_10));
+        songs.add(new Song("'Till I Collapse", "Eminem, Nate Dogg", "0.01", R.drawable.n_9));
+        songs.add(new Song("Prisencolinensinainciusol", "MINACELENTANO", "FREE", R.drawable.n_8));
+        songs.add(new Song("Brick England", "Jean-Michel Jarre, Pet Shop Boys", "5.41", R.drawable.n_7));
+        songs.add(new Song("Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse", "1.21", R.drawable.n_6));
+        songs.add(new Song("Mainframe", "Alex", "2.21", R.drawable.n_5));
+        songs.add(new Song("Catch A Faya - Remaniax Radio Edit", "Dancehall Kings", "0.97", R.drawable.n_4));
+        songs.add(new Song("Dame", "Fly Project", "1.21", R.drawable.n_3));
+        songs.add(new Song("Pop Corn - Remix Version 87 Special D'J", "M & H Band", "2.21", R.drawable.n_2));
+        songs.add(new Song("When Doves Cry - Original Mix", "YNOT, Cosmo Klein", "0.50", R.drawable.n_1));
 
         // Use SongAdapter.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_store);
@@ -120,18 +121,11 @@ public class MusicStoreActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
 
             // Handle clicks on items in ListView.
+            // Just show Toast for now.
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    // Start "playing" by change FAB icon.
-                    fab.setImageDrawable(ContextCompat.getDrawable(MusicStoreActivity.this, android.R.drawable.ic_media_pause));
-                    isPlaying = false;
-                    // Get the Song object at the given position the user clicked on.
-                    Song song = songs.get(position);
-                    // Set song to Now Playing.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlaying.setText(song.toString());
-
+                    Toast.makeText(MusicStoreActivity.this, "Opening external Music Store...", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -139,7 +133,6 @@ public class MusicStoreActivity extends AppCompatActivity {
             // Find the View's that show the categories.
             TextView song_list = findViewById(R.id.song_list);
             TextView playlists = findViewById(R.id.playlists);
-            TextView music_store = findViewById(R.id.music_store);
 
             //Songs list category listener
             // and container for transfer
@@ -176,25 +169,6 @@ public class MusicStoreActivity extends AppCompatActivity {
                     playlistsIntent.putExtra("BUTTON", isPlaying);
                     // Start intent.
                     startActivity(playlistsIntent);
-                }
-            });
-
-            // Music store category listener
-            // and container for transfer
-            // Player state between activities.
-            music_store.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent musicStoreIntent = new Intent(MusicStoreActivity.this, MusicStoreActivity.class);
-                    // Transfer state of the Player between activities.
-                    musicStoreIntent.putExtra("INFO", nowPlayingStorage);
-                    musicStoreIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(musicStoreIntent);
                 }
             });
         }
