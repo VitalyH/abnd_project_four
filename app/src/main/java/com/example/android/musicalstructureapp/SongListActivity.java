@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SongListActivity extends AppCompatActivity {
+public class SongListActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Variables for saving state of the Player.
     private boolean isPlaying = true;
@@ -48,6 +48,12 @@ public class SongListActivity extends AppCompatActivity {
                 fab.setImageDrawable(ContextCompat.getDrawable(SongListActivity.this, android.R.drawable.ic_media_pause));
             }
         }
+
+        // Find "buttons" and sett heir onClickListener to "this".
+        TextView playlists = findViewById(R.id.playlists);
+        playlists.setOnClickListener(this);
+        TextView music_store = findViewById(R.id.music_store);
+        music_store.setOnClickListener(this);
 
         // Scrolling Text (Marque) in Now Playing
         TextView marqueArtistName = this.findViewById(R.id.now_playing);
@@ -131,54 +137,38 @@ public class SongListActivity extends AppCompatActivity {
                     // Set song to Now Playing.
                     TextView nowPlaying = findViewById(R.id.now_playing);
                     nowPlaying.setText(song.toString());
-
-                }
-            });
-
-            // Top menu
-            // Find the View's that show the categories.
-            TextView playlists = findViewById(R.id.playlists);
-            TextView music_store = findViewById(R.id.music_store);
-
-            // Playlists category listener
-            // and container for transfer
-            // Player state between activities.
-            playlists.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
-                    // Transfer state of the Player between activities.
-                    playlistsIntent.putExtra("INFO", nowPlayingStorage);
-                    playlistsIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(playlistsIntent);
-                }
-            });
-
-            // Music store category listener
-            // and container for transfer
-            // Player state between activities.
-            music_store.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
-                    // Transfer state of the Player between activities.
-                    musicStoreIntent.putExtra("INFO", nowPlayingStorage);
-                    musicStoreIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(musicStoreIntent);
                 }
             });
         }
     }
+
+    // Top Menu
+    @Override
+    public void onClick(View view) {
+        // Get info from the Player for saving between activities.
+        TextView nowPlaying = findViewById(R.id.now_playing);
+        nowPlayingStorage = nowPlaying.getText().toString();
+        // Switch for top menu "buttons".
+        switch (view.getId()) {
+            case R.id.playlists:
+                // Initialize intent.
+                Intent playlistsIntent = new Intent(SongListActivity.this, PlaylistActivity.class);
+                // Transfer state of the Player between activities.
+                playlistsIntent.putExtra("INFO", nowPlayingStorage);
+                playlistsIntent.putExtra("BUTTON", isPlaying);
+                // Start intent.
+                startActivity(playlistsIntent);
+                break;
+            case R.id.music_store:
+                Intent musicStoreIntent = new Intent(SongListActivity.this, MusicStoreActivity.class);
+                musicStoreIntent.putExtra("INFO", nowPlayingStorage);
+                musicStoreIntent.putExtra("BUTTON", isPlaying);
+                startActivity(musicStoreIntent);
+                break;
+        }
+    }
 }
+
+
 
 

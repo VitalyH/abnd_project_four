@@ -22,63 +22,63 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">@dimen/big_padding</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
 
     <style name="NowPlayingStyle">
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">@dimen/big_padding</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
 
     <style name="FloatingActionButtonStyle">
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">@dimen/big_padding</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentStart">true</item>
-        <item name="android:layout_marginBottom">40dp</item>
-        <item name="android:layout_marginStart">14dp</item>
+        <item name="android:layout_marginBottom">@dimen/fab_bottom_margin</item>
+        <item name="android:layout_marginStart">@dimen/fab_start_margin</item>
     </style>
 
     <style name="ListViewPlayEuroButton">
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">@dimen/play_pause_button_size</item>
+        <item name="android:layout_width">@dimen/play_pause_button_size</item>
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginEnd">@dimen/big_padding</item>
     </style>
 
     <style name="ListViewSongPlaylistTitle">
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">@dimen/small_padding</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
 
     <style name="ListViewArtist">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:singleLine">true</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
+        <item name="android:paddingEnd">@dimen/small_padding</item>
     </style>
 
     <style name="ListViewTag">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:padding">@dimen/small_padding</item>
     </style>
 
     <style name="ListViewNumbers">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:singleLine">true</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
     </style>
 </resources>

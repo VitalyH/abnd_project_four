@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Musical Structure</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_now_playing">Now Playing</string>
     <string name="title_activity_song_list">Songs</string>
     <string name="title_activity_playlist">Playlists</string>
@@ -9,4 +8,15 @@
     <string name="player_default_message">Choose song&#8230;</string>
     <string name="list_item_song_price">PRICE:</string>
     <string name="playlist_item_song_number">SONGS:</string>
+    <string name="playlist_1">Ultimate 80s Hits</string>
+    <string name="playlist_2">Classic</string>
+    <string name="playlist_3">Liked From Radio</string>
+    <string name="playlist_4">Shazaam tracks</string>
+    <string name="playlist_5">Close Up</string>
+    <string name="playlist_6">Teen party</string>
+    <string name="playlist_7">Timeless Classis</string>
+    <string name="playlist_8">I Love Italia</string>
+    <string name="playlist_9">Rap The Best</string>
+    <string name="playlist_10">Workout Mix</string>
+    <string name="playlist_11">Misc</string>
 </resources>

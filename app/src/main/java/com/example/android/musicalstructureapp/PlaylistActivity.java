@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PlaylistActivity extends AppCompatActivity {
+public class PlaylistActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Variables for saving state of the Player.
     private boolean isPlaying = true;
@@ -48,6 +48,12 @@ public class PlaylistActivity extends AppCompatActivity {
                 fab.setImageDrawable(ContextCompat.getDrawable(PlaylistActivity.this, android.R.drawable.ic_media_pause));
             }
         }
+
+        // Find "buttons" and set heir onClickListener to "this".
+        TextView song_list = findViewById(R.id.song_list);
+        song_list.setOnClickListener(this);
+        TextView music_store = findViewById(R.id.music_store);
+        music_store.setOnClickListener(this);
 
         // Scrolling Text (Marque) in Now Playing
         TextView marqueArtistName = this.findViewById(R.id.now_playing);
@@ -93,17 +99,17 @@ public class PlaylistActivity extends AppCompatActivity {
         // Hardcode them. In real app they wouldn't be there anyway (SQLite, ext. source, etc.)
         // Song title and artist name here kinda a first song in the playlist. They begin "playing".
         final ArrayList<Song> songs = new ArrayList<>();
-        songs.add(new Song("Ultimate 80s Hits", "25","When Doves Cry - Original Mix", "YNOT, Cosmo Klein"));
-        songs.add(new Song("Classic", "13","Pop Corn - Remix Version 87 Special D'J", "M & H Band"));
-        songs.add(new Song("Liked From Radio", "19","Dame", "Fly Project"));
-        songs.add(new Song("Shazaam tracks", "55","Catch A Faya - Remaniax Radio Edit", "Dancehall Kings"));
-        songs.add(new Song("Close Up", "16","Mainframe", "Alex"));
-        songs.add(new Song("Teen party", "13","Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse"));
-        songs.add(new Song("Timeless Classis", "66","Brick England", "Jean-Michel Jarre, Pet Shop Boys"));
-        songs.add(new Song("I Love Italia", "24","Prisencolinensinainciusol", "MINACELENTANO"));
-        songs.add(new Song("Rap The Best", "1","'Till I Collapse", "Eminem, Nate Dogg"));
-        songs.add(new Song("Workout Mix", "55","In the Army Now - Radio Mix", "Captain Jack"));
-        songs.add(new Song("Misc", "198","Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk"));
+        songs.add(new Song(getString(R.string.playlist_1), "25", "When Doves Cry - Original Mix", "YNOT, Cosmo Klein"));
+        songs.add(new Song(getString(R.string.playlist_2), "13", "Pop Corn - Remix Version 87 Special D'J", "M & H Band"));
+        songs.add(new Song(getString(R.string.playlist_3), "19", "Dame", "Fly Project"));
+        songs.add(new Song(getString(R.string.playlist_4), "55", "Catch A Faya - Remaniax Radio Edit", "Dancehall Kings"));
+        songs.add(new Song(getString(R.string.playlist_5), "16", "Mainframe", "Alex"));
+        songs.add(new Song(getString(R.string.playlist_6), "13", "Katchi (Ofenbach vs. Nick Waterhouse)", "Ofenbach, Nick Waterhouse"));
+        songs.add(new Song(getString(R.string.playlist_7), "66", "Brick England", "Jean-Michel Jarre, Pet Shop Boys"));
+        songs.add(new Song(getString(R.string.playlist_8), "24", "Prisencolinensinainciusol", "MINACELENTANO"));
+        songs.add(new Song(getString(R.string.playlist_9), "1", "'Till I Collapse", "Eminem, Nate Dogg"));
+        songs.add(new Song(getString(R.string.playlist_10), "55", "In the Army Now - Radio Mix", "Captain Jack"));
+        songs.add(new Song(getString(R.string.playlist_11), "198", "Katarakta (feat. Mela Koteluk)", "Daniel Bloom, Mela Koteluk"));
 
         // Use SongAdapter.
         PlaylistAdapter adapter = new PlaylistAdapter(this, songs, R.color.category_playlists);
@@ -126,49 +132,32 @@ public class PlaylistActivity extends AppCompatActivity {
 
                 }
             });
+        }
+    }
 
-            // Top menu
-            // Find the View's that show the categories.
-            TextView song_list = findViewById(R.id.song_list);
-            TextView music_store = findViewById(R.id.music_store);
-
-            //Songs list category listener
-            // and container for transfer
-            // Player state between activities.
-            song_list.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent songListIntent = new Intent(PlaylistActivity.this, SongListActivity.class);
-                    // Transfer state of the Player between activities.
-                    songListIntent.putExtra("INFO", nowPlayingStorage);
-                    songListIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(songListIntent);
-                }
-            });
-
-            // Music store category listener
-            // and container for transfer
-            // Player state between activities.
-            music_store.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Get info from the Player.
-                    TextView nowPlaying = findViewById(R.id.now_playing);
-                    nowPlayingStorage = nowPlaying.getText().toString();
-                    // Initialize intent.
-                    Intent musicStoreIntent = new Intent(PlaylistActivity.this, MusicStoreActivity.class);
-                    // Transfer state of the Player between activities.
-                    musicStoreIntent.putExtra("INFO", nowPlayingStorage);
-                    musicStoreIntent.putExtra("BUTTON", isPlaying);
-                    // Start intent.
-                    startActivity(musicStoreIntent);
-                }
-            });
+    // Top Menu
+    @Override
+    public void onClick(View view) {
+        // Get info from the Player for saving between activities.
+        TextView nowPlaying = findViewById(R.id.now_playing);
+        nowPlayingStorage = nowPlaying.getText().toString();
+        // Switch for top menu "buttons".
+        switch (view.getId()) {
+            case R.id.song_list:
+                // Initialize intent.
+                Intent SongListIntent = new Intent(PlaylistActivity.this, SongListActivity.class);
+                // Transfer state of the Player between activities.
+                SongListIntent.putExtra("INFO", nowPlayingStorage);
+                SongListIntent.putExtra("BUTTON", isPlaying);
+                // Start intent.
+                startActivity(SongListIntent);
+                break;
+            case R.id.music_store:
+                Intent musicStoreIntent = new Intent(PlaylistActivity.this, MusicStoreActivity.class);
+                musicStoreIntent.putExtra("INFO", nowPlayingStorage);
+                musicStoreIntent.putExtra("BUTTON", isPlaying);
+                startActivity(musicStoreIntent);
+                break;
         }
     }
 }

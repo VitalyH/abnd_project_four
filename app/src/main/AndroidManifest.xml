@@ -24,7 +24,6 @@
         <activity
             android:name=".MusicStoreActivity"
             android:label="@string/title_activity_music_store" />
-        <activity android:name=".playlist_activity"></activity>
     </application>
 
 </manifest>
